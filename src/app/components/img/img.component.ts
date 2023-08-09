@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, OnInit, AfterViewInit, OnDestroy, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-img',
@@ -6,7 +6,15 @@ import { Component, Input, Output, EventEmitter, OnChanges, OnInit, AfterViewIni
   styleUrls: ['./img.component.scss']
 })
 export class ImgComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
-  @Input() img: string = '';
+
+  img: string = '';
+
+  @Input('img')
+  set changeImg(newImg: string){
+    this.img = newImg;
+    console.log('change just img =>', this.img);    
+  }
+  @Input() alt: string = '';
   @Output() loaded = new EventEmitter<string>();
   imageDefault = 'https://www.w3schools.com/howto/img_avatar2.png';
   counter = 0;
@@ -18,11 +26,12 @@ export class ImgComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy
     console.log('constructor', 'imgValue =>', this.img);
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     //Antes y durante del render
     //Evaluar cambios de los inputs
     //Corre las veces que se actualice los inputs
     console.log('ngOnChanges', 'imgValue =>', this.img);
+    console.log('Changes: ', changes);
   }
 
   ngOnInit(): void {
