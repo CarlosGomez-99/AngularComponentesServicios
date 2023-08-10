@@ -10,10 +10,8 @@ export class StoreService {
 
   private myShoppingCart: Product[] = [];
   private myCart = new BehaviorSubject<Product[]>([]);
-  
-  myCart$ = this.myCart.asObservable();
 
-  constructor() { }
+  myCart$ = this.myCart.asObservable();
 
   getShoppingCart() {
     return this.myShoppingCart;
