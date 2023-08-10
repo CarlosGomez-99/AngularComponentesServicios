@@ -8,10 +8,16 @@
     Today: {{ today | date: 'short' }}
 </p>
 <p>
+    Today: {{ today | timeAgo }}
+</p>
+<p>
     Otra fecha: {{ date | date: 'yyyy/MM/dd' }}
 </p>
 <p>
     {{ 'pRuebA De MaYuscULAS' | uppercase }}
+</p>
+<p>
+    {{ 'Prueba de transformar vocales' | transformVowels }}
 </p>
 <div class="products--grid">
     <app-product [product]="product" *ngFor="let product of products"
